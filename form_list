@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head> <! -- page HTML d'échange avec objet IOT --> 
+        <meta charset="utf-8" />
+        <link rel="icon" href="engrenage.png">
+        <link rel="stylesheet" href="./style1.css">
+        <title>Request IOT </title>
+    <h1 id ="titre_principal">page de pilotage du produit G205 [CN]</h1> 
+
+    </head>
+
+    <body>
+       <p>cliquez sur l'action souhaitée sur le relais </p>
+       
+
+
+        <form name = form_ id ="form_" action="">      
+            <label for="entree">Nom</label>
+            <input type="text" id="entree" placeholder="Votre nom" minlength="1" required>
+            <p id="notif"></p>
+
+            <label for="statut">sélectionner un statut:</label>
+
+                        <select name="etat" id="statut">
+                            <option value="on">RELAIS ON</option>
+                            <option value="off">RELAIS OFF</option>
+                        </select>
+                        <br>
+            <button id ="valid" type="submit"> Postez votre demande</button>
+
+            
+
+
+      </form>
+
+    </body>
+
+
+        
+
+
+    <script>
+        const buton = document.getElementById("valid");
+        const regex = /[a-z]/;
+        const notif = document.getElementById("notif");
+        const input_ = document.getElementById("entree");
+        const formulaire = document.getElementById("form_");
+        const liste = document.getElementById('statut'); // récupère les options de sélection 
+        const elem = liste.options[liste.selectedIndex].value
+      buton.addEventListener('click', envoi);
+
+            function envoi(evt) {
+
+    if (input_.validity.valueMissing) { // le test sur le champs vide avec textContent ne fonctionne pas
+             evt.preventDefault();
+              console.log(liste.value, elem)   
+               alert("rien:" + input_.value);
+               notif.textContent ="le champs nom est vide, merci de saisir votre nom";
+               console.log(("PAS DE CONTENU : " + input_.textContent));
+              
+            }
+        else if 
+            
+            (regex.test(input_.value))
+            {
+            evt.preventDefault();
+            notif.textContent ="le champs nom est rempli avec des minuscule uniquement",
+            console.log(input_.value);
+             }
+                formulaire.submit();
+            console.log("je suis dans l'envoi")
+        }
+    
+
+        </script>
+    
+</html>
